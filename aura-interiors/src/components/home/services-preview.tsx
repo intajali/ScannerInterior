@@ -8,7 +8,7 @@ export function ServicesPreview() {
   return (
     <SectionWrapper id="services" bordered>
       <AnimatedSection>
-        <SectionHeading eyebrow="Services" title="Design, renovation, and styling." />
+        <SectionHeading eyebrow="Services" title="From the plan to the last object." />
       </AnimatedSection>
       <div className="mt-10 grid gap-6 md:grid-cols-2">
         {services.map((service) => (

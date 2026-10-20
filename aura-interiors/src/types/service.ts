@@ -3,4 +3,7 @@ export type Service = {
   title: string;
   summary: string;
   description: string;
+  benefits: readonly string[];
+  image: string;
+  imageAlt: string;
 };
