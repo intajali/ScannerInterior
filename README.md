@@ -1,2 +1,3 @@
 # ScannerInterior
-A modern, elegant, and responsive interior design website built with HTML5, CSS3, and TypeScript, featuring premium UI/UX, interactive portfolios, smooth animations, and consultation booking.
+
+A modern, elegant, and responsive website for Scanner Interiors Pvt Ltd, built with Next.js, React, TypeScript, and Tailwind CSS. It includes a premium interior-design interface, an interactive portfolio, Motion animations, and a consultation form that saves enquiries to PostgreSQL.
