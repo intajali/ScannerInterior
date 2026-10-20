@@ -3,21 +3,21 @@
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
-type RevealProps = {
+type AnimatedSectionProps = {
   children: ReactNode;
   className?: string;
 };
 
-export function Reveal({ children, className }: RevealProps) {
+export function AnimatedSection({ children, className }: AnimatedSectionProps) {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.div
       className={className}
-      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>

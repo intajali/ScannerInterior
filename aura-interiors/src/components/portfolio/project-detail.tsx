@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Container } from "@/components/common/container";
+import { SectionHeading } from "@/components/common/section-heading";
 import { getServiceBySlug } from "@/data/services";
 import type { Project } from "@/types";
 
@@ -12,32 +14,32 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
 
   return (
     <article>
-      <header className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
-          <p className="text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase">
-            {project.location} · {project.year}
-          </p>
-          <h1 className="mt-4 max-w-3xl font-heading text-5xl leading-[1.05] font-medium tracking-tight sm:text-6xl">
-            {project.title}
-          </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-            {project.summary}
-          </p>
+      <header className="border-b border-sage bg-ivory">
+        <Container className="py-16 sm:py-24">
+          <SectionHeading
+            as="h1"
+            eyebrow={`${project.location} · ${project.year}`}
+            title={project.title}
+            description={project.summary}
+          />
           {service ? (
-            <p className="mt-4 text-sm">
-              <Link href={`/services#${service.slug}`} className="underline underline-offset-4">
+            <p className="mt-6 font-nav text-sm tracking-wide">
+              <Link
+                href={`/services#${service.slug}`}
+                className="underline decoration-sage underline-offset-4 hover:decoration-bronze"
+              >
                 {service.title}
               </Link>
             </p>
           ) : null}
-        </div>
+        </Container>
       </header>
-      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+      <Container className="py-16 sm:py-20">
         <p className="max-w-2xl text-base leading-7">{project.description}</p>
         {project.images.length > 0 ? (
           <ul className="mt-10 grid gap-4 sm:grid-cols-2">
             {project.images.map((image) => (
-              <li key={image.src} className="relative aspect-[4/3]">
+              <li key={image.src} className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-soft">
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -49,7 +51,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
             ))}
           </ul>
         ) : null}
-      </div>
+      </Container>
     </article>
   );
 }

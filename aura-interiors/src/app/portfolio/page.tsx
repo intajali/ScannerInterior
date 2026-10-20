@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/common/container";
 import { PageHeader } from "@/components/common/page-header";
+import { SectionWrapper } from "@/components/common/section-wrapper";
 import { ProjectGrid } from "@/components/portfolio/project-grid";
 import { getPublishedProjects } from "@/features/projects";
 
@@ -20,11 +20,9 @@ export default function PortfolioPage() {
         title="Selected work."
         description="A short set of rooms and buildings, published as each commission is ready to be shown."
       />
-      <section>
-        <Container className="py-16 sm:py-20">
-          <ProjectGrid projects={projects} />
-        </Container>
-      </section>
+      <SectionWrapper>
+        <ProjectGrid projects={projects} />
+      </SectionWrapper>
     </>
   );
 }

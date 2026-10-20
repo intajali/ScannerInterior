@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/common/container";
 import { PageHeader } from "@/components/common/page-header";
+import { SectionWrapper } from "@/components/common/section-wrapper";
 import { ServiceList } from "@/components/services/service-list";
 import { services } from "@/data/services";
 
@@ -18,11 +18,9 @@ export default function ServicesPage() {
         title="Three kinds of rooms."
         description="Homes, hospitality, and workplaces, each planned around use, light, and materials that can be lived with."
       />
-      <section>
-        <Container className="py-16 sm:py-20">
-          <ServiceList services={services} />
-        </Container>
-      </section>
+      <SectionWrapper>
+        <ServiceList services={services} />
+      </SectionWrapper>
     </>
   );
 }

@@ -1,23 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
+import { Inter, Montserrat, Playfair_Display } from "next/font/google";
 import { SiteShell } from "@/components/layout/site-shell";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const display = Cormorant_Garamond({
-  variable: "--font-display",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4f1ea",
+  themeColor: "#F7F4EF",
 };
 
 const structuredData = {
@@ -75,7 +76,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${display.variable} h-full scroll-smooth antialiased`}
+      className={`${inter.variable} ${playfair.variable} ${montserrat.variable} h-full scroll-smooth antialiased`}
       data-scroll-behavior="smooth"
     >
       <body className="flex min-h-full flex-col">
