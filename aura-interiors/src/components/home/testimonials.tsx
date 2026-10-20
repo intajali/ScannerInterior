@@ -1,8 +1,9 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+import { swapTransition } from "@/components/common/motion";
 import { SectionHeading } from "@/components/common/section-heading";
 import { SectionWrapper } from "@/components/common/section-wrapper";
 import { focusRing } from "@/components/common/styles";
@@ -11,7 +12,6 @@ import { cn } from "@/lib/utils";
 
 export function Testimonials() {
   const [index, setIndex] = useState(0);
-  const reduceMotion = useReducedMotion();
   const total = demonstrationTestimonials.length;
   const testimonial = demonstrationTestimonials[index];
 
@@ -44,10 +44,11 @@ export function Testimonials() {
         <AnimatePresence mode="wait" initial={false}>
           <motion.blockquote
             key={testimonial.id}
-            initial={reduceMotion ? false : { opacity: 0, x: 12 }}
+            data-motion=""
+            initial={{ opacity: 0, x: 12 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={reduceMotion ? undefined : { opacity: 0, x: -12 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            exit={{ opacity: 0, x: -12 }}
+            transition={swapTransition}
             aria-live="polite"
             className="min-h-40"
           >

@@ -19,7 +19,7 @@ function isActivePath(pathname: string, href: string): boolean {
 }
 
 const linkClass =
-  "relative font-nav text-sm tracking-wide text-charcoal transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-left after:bg-bronze after:transition-transform after:duration-300 after:scale-x-0 hover:after:scale-x-100 motion-reduce:transition-none";
+  "relative font-nav text-sm tracking-wide text-charcoal transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-left after:bg-bronze after:transition-transform after:duration-300 after:scale-x-0 hover:after:scale-x-100 motion-reduce:transition-none motion-reduce:after:transition-none";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -94,7 +94,22 @@ export function SiteHeader() {
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpenPath(open ? null : pathname)}
           >
-            {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+            <span className="relative size-5">
+              <Menu
+                className={cn(
+                  "absolute inset-0 size-5 transition-opacity duration-200 motion-reduce:transition-none",
+                  open ? "opacity-0" : "opacity-100",
+                )}
+                aria-hidden="true"
+              />
+              <X
+                className={cn(
+                  "absolute inset-0 size-5 transition-opacity duration-200 motion-reduce:transition-none",
+                  open ? "opacity-100" : "opacity-0",
+                )}
+                aria-hidden="true"
+              />
+            </span>
           </button>
         </div>
       </Container>
@@ -102,13 +117,12 @@ export function SiteHeader() {
         id="mobile-navigation"
         inert={open ? undefined : true}
         className={cn(
-          "absolute inset-x-0 top-full border-b border-sage bg-ivory shadow-soft transition-all duration-300 motion-reduce:transition-none lg:hidden",
-          open
-            ? "visible translate-y-0 opacity-100"
-            : "pointer-events-none invisible -translate-y-2 opacity-0",
+          "absolute inset-x-0 top-full grid overflow-hidden bg-ivory transition-[grid-template-rows,opacity,box-shadow] duration-300 ease-out motion-reduce:transition-none lg:hidden",
+          open ? "grid-rows-[1fr] opacity-100 shadow-soft" : "pointer-events-none grid-rows-[0fr] opacity-0",
         )}
       >
-        <Container className="flex flex-col gap-1 py-4">
+        <div className="min-h-0 overflow-hidden">
+          <Container className="flex flex-col gap-1 border-b border-sage py-4">
           {mainNav.map((item) => {
             const active = isActivePath(pathname, item.href);
 
@@ -134,7 +148,8 @@ export function SiteHeader() {
           >
             Book Consultation
           </PrimaryButton>
-        </Container>
+          </Container>
+        </div>
       </div>
     </header>
   );

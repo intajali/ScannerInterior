@@ -1,6 +1,10 @@
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@/generated/prisma/client";
 
+if (typeof window !== "undefined") {
+  throw new Error("Database access is only available on the server.");
+}
+
 const globalForPrisma = globalThis as unknown as {
   prisma?: PrismaClient;
 };
@@ -10,7 +14,7 @@ function createPrismaClient(): PrismaClient {
 
   if (!connectionString) {
     throw new Error(
-      "DATABASE_URL is not set. Copy .env.example to .env before querying the database.",
+      "DATABASE_URL is not set. Copy .env.example to .env and set your PostgreSQL connection string before querying the database.",
     );
   }
 

@@ -1,10 +1,11 @@
 "use client";
 
 import { Expand } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { swapTransition } from "@/components/common/motion";
 import { ProjectLightbox } from "@/components/portfolio/project-lightbox";
 import { focusRing } from "@/components/common/styles";
 import { cn } from "@/lib/utils";
@@ -28,7 +29,6 @@ const frameClass: Record<ProjectFrame, string> = {
 export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
   const [filter, setFilter] = useState<PortfolioFilter>("all");
   const [open, setOpen] = useState<{ slug: string; index: number } | null>(null);
-  const reduceMotion = useReducedMotion();
   const visible =
     filter === "all" ? projects : projects.filter((project) => project.category === filter);
   const openProject = open ? projects.find((project) => project.slug === open.slug) : undefined;
@@ -64,10 +64,11 @@ export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={filter}
-          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          data-motion=""
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={swapTransition}
         >
           {visible.length === 0 ? (
             <p className="mt-10 max-w-xl text-base leading-7">
@@ -92,7 +93,7 @@ export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
                               fill
                               loading="lazy"
                               sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                              className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+                              className="image-zoom object-cover"
                             />
                           ) : null}
                         </div>
@@ -128,15 +129,18 @@ export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
           )}
         </motion.div>
       </AnimatePresence>
-      {open && openProject && openProject.images.length > 0 ? (
-        <ProjectLightbox
-          title={openProject.title}
-          images={openProject.images}
-          index={open.index}
-          onClose={() => setOpen(null)}
-          onIndexChange={(index) => setOpen({ slug: openProject.slug, index })}
-        />
-      ) : null}
+      <AnimatePresence>
+        {open && openProject && openProject.images.length > 0 ? (
+          <ProjectLightbox
+            key={openProject.slug}
+            title={openProject.title}
+            images={openProject.images}
+            index={open.index}
+            onClose={() => setOpen(null)}
+            onIndexChange={(index) => setOpen({ slug: openProject.slug, index })}
+          />
+        ) : null}
+      </AnimatePresence>
     </div>
   );
 }

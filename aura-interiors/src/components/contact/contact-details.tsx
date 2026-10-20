@@ -1,21 +1,15 @@
-import { SectionHeading } from "@/components/common/section-heading";
 import { surfaceCardClass } from "@/components/common/styles";
+import { WhatsAppButton } from "@/components/contact/whatsapp-button";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export function ContactDetails() {
   return (
-    <div className="grid gap-10 md:grid-cols-2 md:gap-16">
-      <SectionHeading
-        as="h2"
-        title="Write to the studio"
-        description="Include the location, the timeline, and what you want the room to feel like. Commissions are taken by appointment."
-      />
-      <dl className={cn(surfaceCardClass, "space-y-6 p-6 text-base sm:p-8")}>
+    <aside className={cn(surfaceCardClass, "p-6 sm:p-8")}>
+      <h2 className="font-heading text-3xl text-charcoal">Studio</h2>
+      <dl className="mt-6 space-y-6 text-base">
         <div>
-          <dt className="font-nav text-xs font-medium tracking-[0.18em] uppercase">
-            Email
-          </dt>
+          <dt className="font-nav text-xs font-medium tracking-[0.18em] uppercase">Email</dt>
           <dd className="mt-2">
             <a
               href={`mailto:${siteConfig.email}`}
@@ -26,12 +20,15 @@ export function ContactDetails() {
           </dd>
         </div>
         <div>
-          <dt className="font-nav text-xs font-medium tracking-[0.18em] uppercase">
-            Studio
-          </dt>
+          <dt className="font-nav text-xs font-medium tracking-[0.18em] uppercase">Practice</dt>
           <dd className="mt-2">{siteConfig.name}</dd>
         </div>
+        <div>
+          <dt className="font-nav text-xs font-medium tracking-[0.18em] uppercase">Visits</dt>
+          <dd className="mt-2">{siteConfig.address}</dd>
+        </div>
       </dl>
-    </div>
+      <WhatsAppButton className="mt-8" />
+    </aside>
   );
 }

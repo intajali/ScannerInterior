@@ -7,78 +7,71 @@ datasource db {
   provider = "postgresql"
 }
 
-enum ProjectStatus {
-  DRAFT
-  PUBLISHED
+enum ProjectCategory {
+  RESIDENTIAL
+  COMMERCIAL
+  LUXURY
+  MINIMALIST
 }
 
-enum InquiryStatus {
+enum EnquiryStatus {
   NEW
   IN_REVIEW
   CLOSED
 }
 
-model Service {
-  id          String    @id @default(cuid())
-  slug        String    @unique
-  title       String
-  summary     String
-  description String    @db.Text
-  sortOrder   Int       @default(0)
-  projects    Project[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-}
-
 model Project {
-  id          String         @id @default(cuid())
-  slug        String         @unique
+  id          String          @id @default(cuid())
   title       String
-  location    String?
-  summary     String
-  description String         @db.Text
-  year        Int?
-  status      ProjectStatus  @default(DRAFT)
-  featured    Boolean        @default(false)
-  coverImage  String?
-  serviceId   String?
-  service     Service?       @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  slug        String          @unique
+  description String          @db.Text
+  category    ProjectCategory
+  coverImage  String
   images      ProjectImage[]
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
 
-  @@index([status, featured])
+  @@index([category])
+  @@index([createdAt])
 }
 
 model ProjectImage {
   id        String  @id @default(cuid())
   projectId String
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  url       String
-  alt       String
+  imageUrl  String
+  altText   String
   sortOrder Int     @default(0)
 
+  @@unique([projectId, sortOrder])
   @@index([projectId])
 }
 
-model Testimonial {
-  id        String   @id @default(cuid())
-  quote     String   @db.Text
-  author    String
-  role      String?
-  featured  Boolean  @default(false)
-  createdAt DateTime @default(now())
+model Service {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  description String    @db.Text
+  imageUrl    String
+  enquiries   Enquiry[]
 }
 
-model Inquiry {
-  id        String        @id @default(cuid())
-  name      String
-  email     String
-  phone     String?
-  message   String        @db.Text
-  status    InquiryStatus @default(NEW)
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+/// `service` is the related Service. The foreign key column is `serviceId`.
+model Enquiry {
+  id              String        @id @default(cuid())
+  name            String
+  email           String
+  phone           String?
+  serviceId       String?
+  service         Service?      @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  projectLocation String?
+  budget          String?
+  message         String        @db.Text
+  status          EnquiryStatus @default(NEW)
+  submissionKey   String        @unique
+  createdAt       DateTime      @default(now())
 
   @@index([status, createdAt])
+  @@index([email])
+  @@index([serviceId])
 }

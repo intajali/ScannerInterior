@@ -1,10 +1,8 @@
-export type EnquiryInput = {
-  name: string;
-  email: string;
-  phone?: string;
-  message: string;
-};
+export type {
+  EnquiryFieldName as EnquiryField,
+  EnquiryFormValues as EnquiryInput,
+} from "@/features/enquiries/enquiry-schema";
 
-export type EnquiryField = keyof EnquiryInput;
+import type { EnquiryFieldName } from "@/features/enquiries/enquiry-schema";
 
-export type EnquiryErrors = Partial<Record<EnquiryField, string>>;
+export type EnquiryErrors = Partial<Record<EnquiryFieldName, string>>;

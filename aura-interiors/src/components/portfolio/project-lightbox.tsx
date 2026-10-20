@@ -1,9 +1,10 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { swapTransition } from "@/components/common/motion";
 import { focusRing } from "@/components/common/styles";
 import { cn } from "@/lib/utils";
 import type { ProjectImage } from "@/types";
@@ -24,7 +25,6 @@ export function ProjectLightbox({
   onIndexChange,
 }: ProjectLightboxProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
-  const reduceMotion = useReducedMotion();
   const image = images[index];
   const total = images.length;
 
@@ -64,11 +64,16 @@ export function ProjectLightbox({
   }
 
   return (
-    <div
+    <motion.div
       className="fixed inset-0 z-[80] flex flex-col bg-charcoal/92 p-4 sm:p-8"
       role="dialog"
       aria-modal="true"
       aria-label={`${title} photographs`}
+      data-motion=""
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={swapTransition}
       onClick={onClose}
     >
       <div
@@ -98,10 +103,11 @@ export function ProjectLightbox({
             <motion.div
               key={image.src}
               className="absolute inset-0"
-              initial={reduceMotion ? false : { opacity: 0 }}
+              data-motion=""
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={reduceMotion ? undefined : { opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0 }}
+              transition={swapTransition}
             >
               <Image
                 src={image.src}
@@ -141,6 +147,6 @@ export function ProjectLightbox({
         ) : null}
         <p className="mt-3 shrink-0 text-sm leading-6 text-ivory">{image.alt}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }

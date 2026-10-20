@@ -21,6 +21,9 @@ export const siteConfig = {
   email: "hello@scannerinteriors.com",
   phone: "" as string,
   address: "By appointment",
+  whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "") as string,
+  whatsappMessage:
+    "Hello, I would like to book a consultation with Scanner Interiors Pvt Ltd.",
   copyrightYear: 2026,
   social: [
     { label: "Instagram", href: "https://www.instagram.com" },

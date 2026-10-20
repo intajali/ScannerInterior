@@ -39,7 +39,7 @@ export function FeaturedProjects() {
                     alt=""
                     fill
                     sizes={lead ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none"
+                    className="image-zoom object-cover"
                   />
                 ) : (
                   <div className="absolute inset-0 bg-sand" />

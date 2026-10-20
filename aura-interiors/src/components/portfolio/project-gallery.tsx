@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import { ProjectLightbox } from "@/components/portfolio/project-lightbox";
@@ -27,7 +28,7 @@ export function ProjectGallery({ title, images }: ProjectGalleryProps) {
             <button
               type="button"
               className={cn(
-                "relative block w-full overflow-hidden rounded-lg shadow-soft",
+                "group relative block w-full overflow-hidden rounded-lg shadow-soft",
                 imageIndex === 0 ? "aspect-[16/10]" : "aspect-[4/3]",
                 focusRing,
               )}
@@ -40,21 +41,24 @@ export function ProjectGallery({ title, images }: ProjectGalleryProps) {
                 fill
                 loading="lazy"
                 sizes={imageIndex === 0 ? "100vw" : "(min-width: 640px) 50vw, 100vw"}
-                className="object-cover transition-transform duration-500 hover:scale-[1.02] motion-reduce:transition-none"
+                className="image-zoom object-cover"
               />
             </button>
           </li>
         ))}
       </ul>
-      {index !== null ? (
-        <ProjectLightbox
-          title={title}
-          images={images}
-          index={index}
-          onClose={() => setIndex(null)}
-          onIndexChange={setIndex}
-        />
-      ) : null}
+      <AnimatePresence>
+        {index !== null ? (
+          <ProjectLightbox
+            key="project-gallery"
+            title={title}
+            images={images}
+            index={index}
+            onClose={() => setIndex(null)}
+            onIndexChange={setIndex}
+          />
+        ) : null}
+      </AnimatePresence>
     </>
   );
 }

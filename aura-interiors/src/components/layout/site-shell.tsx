@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { BackToTop } from "@/components/layout/back-to-top";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SkipLink } from "@/components/layout/skip-link";
@@ -16,6 +17,7 @@ export function SiteShell({ children }: SiteShellProps) {
         {children}
       </main>
       <SiteFooter />
+      <BackToTop />
     </>
   );
 }

@@ -2,7 +2,6 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode, SVGProps } from "react";
 import { Container } from "@/components/common/container";
-import { BackToTop } from "@/components/layout/back-to-top";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { mainNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
@@ -128,11 +127,10 @@ export function SiteFooter() {
         </div>
       </Container>
       <div className="border-t border-sage">
-        <Container className="flex items-center justify-between gap-4 py-5">
+        <Container className="py-5">
           <p className="text-sm leading-6">
             © {siteConfig.copyrightYear} {siteConfig.name}. All rights reserved.
           </p>
-          <BackToTop />
         </Container>
       </div>
     </footer>
