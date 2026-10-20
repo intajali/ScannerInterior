@@ -1,15 +1,21 @@
-import { Approach } from "@/components/home/approach";
-import { ConsultationBand } from "@/components/home/consultation-band";
-import { Disciplines } from "@/components/home/disciplines";
-import { Hero } from "@/components/home/hero";
+import { AboutPreview } from "@/components/home/about-preview";
+import { ConsultationCTA } from "@/components/home/consultation-cta";
+import { DesignProcess } from "@/components/home/design-process";
+import { FeaturedProjects } from "@/components/home/featured-projects";
+import { HeroSection } from "@/components/home/hero-section";
+import { ServicesPreview } from "@/components/home/services-preview";
+import { Testimonials } from "@/components/home/testimonials";
 
 export default function HomePage() {
   return (
     <>
-      <Hero />
-      <Approach />
-      <Disciplines />
-      <ConsultationBand />
+      <HeroSection />
+      <AboutPreview />
+      <ServicesPreview />
+      <FeaturedProjects />
+      <DesignProcess />
+      <Testimonials />
+      <ConsultationCTA />
     </>
   );
 }

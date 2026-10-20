@@ -1,7 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { interactiveCardClass } from "@/components/common/styles";
 import { imagePaths } from "@/config/media";
-import { getServiceBySlug } from "@/data/services";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types";
 
@@ -21,29 +21,31 @@ function coverSource(project: Project): string | null {
 }
 
 export function ProjectCard({ project, className }: ProjectCardProps) {
-  const service = getServiceBySlug(project.serviceSlug);
   const cover = coverSource(project);
 
   return (
     <article className={cn(interactiveCardClass, "flex h-full flex-col overflow-hidden p-0", className)}>
       <Link href={`/portfolio/${project.slug}`} className="flex h-full flex-col rounded-lg">
-        <div
-          className="flex aspect-[4/3] items-end bg-sand p-6"
-          style={
-            cover
-              ? { backgroundImage: `url(${cover})`, backgroundSize: "cover" }
-              : undefined
-          }
-        >
-          <span className="font-nav text-xs font-medium tracking-[0.18em] text-charcoal uppercase">
-            {project.location}
-          </span>
+        <div className="group relative aspect-[4/3] overflow-hidden bg-sand">
+          {cover ? (
+            <Image
+              src={cover}
+              alt=""
+              fill
+              loading="lazy"
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+            />
+          ) : null}
         </div>
         <div className="flex flex-1 flex-col p-6">
-          <h2 className="font-heading text-3xl font-medium tracking-tight">{project.title}</h2>
+          <p className="font-nav text-xs font-medium tracking-[0.18em] text-charcoal uppercase">
+            {project.category}
+          </p>
+          <h2 className="mt-2 font-heading text-3xl font-medium tracking-tight">{project.title}</h2>
           <p className="mt-3 text-base leading-7">{project.summary}</p>
           <p className="mt-4 font-nav text-xs tracking-[0.16em] uppercase">
-            {service?.title ?? "Interior"} · {project.year}
+            {project.location} · {project.year}
           </p>
         </div>
       </Link>

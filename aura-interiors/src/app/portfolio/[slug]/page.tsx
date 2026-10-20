@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Container } from "@/components/common/container";
 import { ProjectDetail } from "@/components/portfolio/project-detail";
-import { getProjectBySlug, getPublishedProjects } from "@/features/projects";
+import { getProjectBySlug, getPublishedProjects, getRelatedProjects } from "@/features/projects";
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
@@ -45,7 +45,7 @@ async function ProjectContent({ params }: ProjectPageProps) {
     notFound();
   }
 
-  return <ProjectDetail project={project} />;
+  return <ProjectDetail project={project} related={getRelatedProjects(slug)} />;
 }
 
 export default function ProjectPage({ params }: ProjectPageProps) {

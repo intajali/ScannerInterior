@@ -15,19 +15,19 @@ export const publicRoutes = [
   { label: "Home", href: "/", changeFrequency: "monthly", priority: 1 },
   { label: "About", href: "/about", changeFrequency: "monthly", priority: 0.8 },
   {
-    label: "Projects",
-    href: "/portfolio",
-    changeFrequency: "weekly",
-    priority: 0.9,
-  },
-  {
     label: "Services",
     href: "/services",
     changeFrequency: "monthly",
     priority: 0.8,
   },
   {
-    label: "Contact Us",
+    label: "Portfolio",
+    href: "/portfolio",
+    changeFrequency: "weekly",
+    priority: 0.9,
+  },
+  {
+    label: "Contact",
     href: "/contact",
     changeFrequency: "yearly",
     priority: 0.7,

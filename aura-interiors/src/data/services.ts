@@ -2,28 +2,36 @@ import type { Service } from "@/types";
 
 export const services: readonly Service[] = [
   {
-    slug: "homes",
-    title: "Homes",
+    slug: "residential",
+    title: "Residential Interior Design",
     summary:
-      "Apartments and houses arranged around daily rituals — arrival, cooking, rest, and the quiet rooms in between.",
+      "Homes planned around daily life, with rooms that feel comfortable and composed.",
     description:
-      "Residential work covers full homes and single rooms. The plan, joinery, lighting, and furnishings are drawn as one composition.",
+      "Apartments and houses are designed as one composition: the plan, joinery, lighting, and furnishings.",
   },
   {
-    slug: "hospitality",
-    title: "Hospitality",
+    slug: "commercial",
+    title: "Commercial Interior Design",
     summary:
-      "Hotels, dining rooms, and guest spaces with a clear sense of welcome and a material palette that holds up to use.",
+      "Studios, offices, and guest spaces with a clear welcome and materials that hold up to use.",
     description:
-      "Guest spaces are designed for repeated use: durable finishes, calm lighting, and a sequence that makes arrival feel considered.",
+      "Commercial work covers workplaces and hospitality rooms. Light, acoustics, and circulation are resolved before furniture is chosen.",
   },
   {
-    slug: "workplaces",
-    title: "Workplaces",
+    slug: "renovation",
+    title: "Space Renovation",
     summary:
-      "Studios and offices that feel considered rather than corporate, with light, acoustics, and focus built into the plan.",
+      "Existing rooms reworked so the plan, finishes, and light feel settled again.",
     description:
-      "Workplace projects balance focus and gathering. Acoustics, daylight, and storage are resolved before furniture is chosen.",
+      "Renovation keeps what is sound and replaces what is not. The new work is drawn to sit quietly with the building.",
+  },
+  {
+    slug: "styling",
+    title: "Interior Styling",
+    summary:
+      "Furniture, textiles, and objects chosen once the room itself is already calm.",
+    description:
+      "Styling is the last layer: pieces selected for proportion and use, not as a substitute for the plan.",
   },
 ];
 

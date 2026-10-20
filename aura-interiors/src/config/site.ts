@@ -17,6 +17,15 @@ export const siteConfig = {
   tagline: "Designing Spaces, Inspiring Lives.",
   description: "Residential and commercial interiors shaped by proportion, material, and light.",
   url: resolveSiteUrl(),
+  logoLines: ["Scanner", "Interiors"],
   email: "hello@scannerinteriors.com",
+  phone: "" as string,
+  address: "By appointment",
+  copyrightYear: 2026,
+  social: [
+    { label: "Instagram", href: "https://www.instagram.com" },
+    { label: "Facebook", href: "https://www.facebook.com" },
+    { label: "LinkedIn", href: "https://www.linkedin.com" },
+  ],
   locale: "en_US",
 } as const;

@@ -6,7 +6,7 @@ import { ContactDetails } from "@/components/contact/contact-details";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Write to Scanner Interiors Pvt Ltd about a residential, hospitality, or workplace commission.",
+    "Write to Scanner Interiors Pvt Ltd about a residential, commercial, renovation, or styling commission.",
 };
 
 export default function ContactPage() {

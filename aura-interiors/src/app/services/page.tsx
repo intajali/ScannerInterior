@@ -7,7 +7,7 @@ import { services } from "@/data/services";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Residential, hospitality, and workplace interiors by Scanner Interiors Pvt Ltd.",
+    "Residential and commercial interiors, renovation, and styling by Scanner Interiors Pvt Ltd.",
 };
 
 export default function ServicesPage() {
@@ -15,8 +15,8 @@ export default function ServicesPage() {
     <>
       <PageHeader
         eyebrow="Services"
-        title="Three kinds of rooms."
-        description="Homes, hospitality, and workplaces, each planned around use, light, and materials that can be lived with."
+        title="Design, renovation, and styling."
+        description="Residential and commercial interiors, renovation, and styling, each planned around use, light, and materials."
       />
       <SectionWrapper>
         <ServiceList services={services} />
