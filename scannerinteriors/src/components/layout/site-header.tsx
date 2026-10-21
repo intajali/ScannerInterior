@@ -19,7 +19,7 @@ function isActivePath(pathname: string, href: string): boolean {
 }
 
 const linkClass =
-  "relative font-nav text-sm tracking-wide text-charcoal transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-left after:bg-bronze after:transition-transform after:duration-300 after:scale-x-0 hover:after:scale-x-100 motion-reduce:transition-none motion-reduce:after:transition-none";
+  "relative font-nav text-sm tracking-wide whitespace-nowrap text-charcoal transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-1.5 after:h-px after:origin-left after:bg-bronze after:transition-transform after:duration-300 after:scale-x-0 hover:after:scale-x-100 motion-reduce:transition-none motion-reduce:after:transition-none";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -50,23 +50,45 @@ export function SiteHeader() {
       }
     };
 
+    const root = document.documentElement;
+    const previousRootOverflow = root.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    root.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+
+    return () => {
+      root.style.overflow = previousRootOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [open]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 1024px)");
+    const onChange = () => {
+      if (media.matches) {
+        setOpenPath(null);
+      }
+    };
+
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
 
   return (
     <header
       className={cn(
         "sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-300 motion-reduce:transition-none",
-        isHome && "-mb-20",
+        isHome && "-mb-16 lg:-mb-20",
         solid
           ? "border-b border-sage bg-ivory/95 shadow-soft backdrop-blur-md"
-          : "border-b border-transparent bg-transparent",
+          : "border-b border-transparent bg-ivory/80 backdrop-blur-md",
       )}
     >
-      <Container className="flex h-20 items-center justify-between gap-4">
-        <SiteLogo />
-        <nav aria-label="Primary" className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex">
+      <Container className="grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-3 lg:h-20 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-6">
+        <SiteLogo className="justify-self-start" />
+        <nav aria-label="Primary" className="hidden items-center justify-center gap-x-5 lg:flex xl:gap-x-8">
           {mainNav.map((item) => {
             const active = isActivePath(pathname, item.href);
 
@@ -88,7 +110,7 @@ export function SiteHeader() {
           </PrimaryButton>
           <button
             type="button"
-            className="inline-flex size-11 items-center justify-center rounded-lg text-charcoal transition-colors duration-300 hover:text-bronze focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-bronze lg:hidden"
+            className="inline-flex size-11 touch-manipulation items-center justify-center rounded-lg text-charcoal transition-colors duration-300 hover:text-bronze focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-bronze lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -122,6 +144,7 @@ export function SiteHeader() {
         )}
       >
         <div className="min-h-0 overflow-hidden">
+          <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain lg:max-h-[calc(100dvh-5rem)]">
           <Container className="flex flex-col gap-1 border-b border-sage py-4">
           {mainNav.map((item) => {
             const active = isActivePath(pathname, item.href);
@@ -132,7 +155,7 @@ export function SiteHeader() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex h-11 items-center font-nav text-sm tracking-wide underline-offset-4",
+                  "flex min-h-12 items-center font-nav text-base tracking-wide underline-offset-4",
                   active ? "underline decoration-bronze" : "hover:underline hover:decoration-bronze",
                 )}
                 onClick={() => setOpenPath(null)}
@@ -149,6 +172,7 @@ export function SiteHeader() {
             Book Consultation
           </PrimaryButton>
           </Container>
+          </div>
         </div>
       </div>
     </header>

@@ -31,8 +31,8 @@ export function ServiceCard({
   );
 
   return (
-    <article id={id} className={cn("scroll-mt-32 flex h-full flex-col p-6 sm:p-8", interactiveCardClass, className)}>
-      <Heading className="font-heading text-3xl font-medium tracking-tight">{heading}</Heading>
+    <article id={id} className={cn("scroll-mt-24 flex h-full min-w-0 flex-col p-5 sm:p-6 lg:scroll-mt-32 lg:p-8", interactiveCardClass, className)}>
+      <Heading className="font-heading text-2xl font-medium tracking-tight text-balance sm:text-3xl">{heading}</Heading>
       <p className="mt-4 text-base leading-7">{summary}</p>
       {description ? <p className="mt-3 text-base leading-7">{description}</p> : null}
     </article>

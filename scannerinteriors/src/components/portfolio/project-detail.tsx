@@ -23,18 +23,18 @@ export function ProjectDetail({ project, related }: ProjectDetailProps) {
               title={project.title}
               description={project.summary}
             />
-            <p className="mt-6 font-nav text-xs tracking-[0.16em] uppercase">
+            <p className="mt-6 font-nav text-xs tracking-[0.14em] uppercase sm:tracking-[0.16em]">
               Demonstration project · {project.year}
             </p>
           </Container>
         </header>
-        <Container className="py-16 sm:py-20">
+        <Container className="py-12 sm:py-16 lg:py-20">
           <p className="max-w-2xl text-base leading-7">{project.description}</p>
           <ProjectGallery title={project.title} images={project.images} />
           <section className="mt-16" aria-labelledby="design-highlights">
             <h2
               id="design-highlights"
-              className="font-heading text-3xl font-medium tracking-tight"
+              className="font-heading aura-title font-medium tracking-tight"
             >
               Design highlights
             </h2>
@@ -49,8 +49,8 @@ export function ProjectDetail({ project, related }: ProjectDetailProps) {
         </Container>
         {related.length > 0 ? (
           <SectionWrapper bordered tone="white">
-            <h2 className="font-heading text-3xl font-medium tracking-tight">Related projects</h2>
-            <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <h2 className="font-heading aura-title font-medium tracking-tight">Related projects</h2>
+            <div className="mt-8 grid gap-6 *:min-w-0 md:grid-cols-2">
               {related.map((item) => (
                 <ProjectCard key={item.slug} project={item} />
               ))}

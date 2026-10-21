@@ -19,7 +19,7 @@ export function FeaturedProjects() {
           description="The rooms below, and the photographs, are demonstration material. They are not completed commissions."
         />
       </AnimatedSection>
-      <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 md:grid-rows-2">
+      <ul className="mt-10 grid grid-cols-1 gap-4 *:min-w-0 md:grid-cols-2 md:grid-rows-2">
         {projects.map((project, index) => {
           const lead = index === 0;
 
@@ -28,8 +28,8 @@ export function FeaturedProjects() {
               <Link
                 href={`/portfolio/${project.slug}`}
                 className={cn(
-                  "group relative flex h-full min-h-72 overflow-hidden rounded-lg shadow-soft",
-                  lead ? "md:min-h-[40rem]" : "md:min-h-0",
+                  "group relative flex h-full min-h-80 overflow-hidden rounded-lg shadow-soft sm:min-h-96",
+                  lead ? "md:min-h-[32rem] lg:min-h-[40rem]" : "md:min-h-0",
                   focusRing,
                 )}
               >
@@ -38,15 +38,19 @@ export function FeaturedProjects() {
                     src={project.coverImage}
                     alt=""
                     fill
-                    sizes={lead ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 50vw, 100vw"}
+                    sizes={
+                      lead
+                        ? "(min-width: 768px) 36rem, 100vw"
+                        : "(min-width: 768px) 36rem, 100vw"
+                    }
                     className="image-zoom object-cover"
                   />
                 ) : (
                   <div className="absolute inset-0 bg-sand" />
                 )}
                 <div className="relative mt-auto w-full bg-charcoal px-5 py-4 text-ivory">
-                  <p className="font-nav text-xs tracking-[0.16em] uppercase">{project.location}</p>
-                  <h3 className="mt-1 font-heading text-2xl font-medium tracking-tight sm:text-3xl">
+                  <p className="font-nav text-xs tracking-[0.14em] uppercase sm:tracking-[0.16em]">{project.location}</p>
+                  <h3 className="mt-1 font-heading text-2xl font-medium tracking-tight text-balance sm:text-3xl">
                     {project.title}
                   </h3>
                 </div>

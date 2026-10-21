@@ -6,6 +6,7 @@ import { OurStory } from "@/components/about/our-story";
 import { Team } from "@/components/about/team";
 import { WhyChooseUs } from "@/components/about/why-choose-us";
 import { ConsultationCTA } from "@/components/home/consultation-cta";
+import { OurClients } from "@/components/home/our-clients";
 import { aboutContent } from "@/data/about";
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function AboutPage() {
       <DesignPhilosophy />
       <Team />
       <WhyChooseUs />
+      <OurClients />
       <ConsultationCTA />
     </>
   );

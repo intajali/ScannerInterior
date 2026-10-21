@@ -22,7 +22,7 @@ export function BackToTop() {
     <button
       type="button"
       className={cn(
-        "fixed right-5 bottom-5 z-40 inline-flex size-11 items-center justify-center rounded-lg border border-sage bg-white text-charcoal shadow-soft transition-opacity duration-300 motion-reduce:transition-none",
+        "fixed right-[max(1.25rem,env(safe-area-inset-right))] bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-40 inline-flex size-11 touch-manipulation items-center justify-center rounded-lg border border-sage bg-white text-charcoal shadow-soft transition-opacity duration-300 motion-reduce:transition-none",
         visible ? "opacity-100" : "pointer-events-none opacity-0",
       )}
       aria-label="Back to top"

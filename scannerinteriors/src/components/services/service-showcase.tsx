@@ -3,6 +3,7 @@ import { AnimatedSection } from "@/components/common/animated-section";
 import { PrimaryButton } from "@/components/common/primary-button";
 import { SectionHeading } from "@/components/common/section-heading";
 import { SectionWrapper } from "@/components/common/section-wrapper";
+import { mediaFrameClass, splitLayoutClass } from "@/components/common/styles";
 import { cn } from "@/lib/utils";
 import type { Service } from "@/types";
 
@@ -23,14 +24,14 @@ export function ServiceShowcase({ services }: ServiceShowcaseProps) {
             bordered
             tone={index % 2 === 0 ? "ivory" : "white"}
           >
-            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-              <figure className={cn(reversed && "lg:order-2")}>
-                <div className="group relative aspect-[4/3] overflow-hidden rounded-lg shadow-soft lg:aspect-[4/5]">
+            <div className={splitLayoutClass}>
+              <figure className={cn("min-w-0", reversed && "md:order-2")}>
+                <div className={cn("group", mediaFrameClass)}>
                   <Image
                     src={service.image}
                     alt={service.imageAlt}
                     fill
-                    sizes="(min-width: 1024px) 40vw, 100vw"
+                    sizes="(min-width: 768px) 45vw, 100vw"
                     className="image-zoom object-cover"
                   />
                 </div>
@@ -38,7 +39,7 @@ export function ServiceShowcase({ services }: ServiceShowcaseProps) {
                   Demonstration photograph
                 </figcaption>
               </figure>
-              <AnimatedSection className={cn(reversed && "lg:order-1")}>
+              <AnimatedSection className={cn("min-w-0", reversed && "md:order-1")}>
                 <SectionHeading as="h2" title={service.title} description={service.description} />
                 <ul className="mt-6 max-w-xl space-y-3">
                   {service.benefits.map((benefit) => (
@@ -47,7 +48,7 @@ export function ServiceShowcase({ services }: ServiceShowcaseProps) {
                     </li>
                   ))}
                 </ul>
-                <PrimaryButton href="/contact" className="mt-8">
+                <PrimaryButton href="/contact" className="mt-8 w-full sm:w-auto">
                   Book a Consultation
                 </PrimaryButton>
               </AnimatedSection>

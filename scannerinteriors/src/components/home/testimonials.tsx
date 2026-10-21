@@ -52,7 +52,7 @@ export function Testimonials() {
             aria-live="polite"
             className="min-h-40"
           >
-            <p className="font-heading text-3xl leading-snug font-medium tracking-tight sm:text-4xl">
+            <p className="aura-quote font-heading font-medium tracking-tight text-balance">
               {testimonial.quote}
             </p>
             <footer className="mt-6 text-sm leading-6">
@@ -65,7 +65,7 @@ export function Testimonials() {
           <button
             type="button"
             className={cn(
-              "inline-flex size-11 items-center justify-center rounded-lg border border-sage bg-white text-charcoal transition-colors duration-300 hover:border-bronze hover:text-bronze",
+              "inline-flex size-11 touch-manipulation items-center justify-center rounded-lg border border-sage bg-white text-charcoal transition-colors duration-300 hover:border-bronze hover:text-bronze",
               focusRing,
             )}
             aria-label="Previous testimonial"
@@ -76,7 +76,7 @@ export function Testimonials() {
           <button
             type="button"
             className={cn(
-              "inline-flex size-11 items-center justify-center rounded-lg border border-sage bg-white text-charcoal transition-colors duration-300 hover:border-bronze hover:text-bronze",
+              "inline-flex size-11 touch-manipulation items-center justify-center rounded-lg border border-sage bg-white text-charcoal transition-colors duration-300 hover:border-bronze hover:text-bronze",
               focusRing,
             )}
             aria-label="Next testimonial"
@@ -84,20 +84,26 @@ export function Testimonials() {
           >
             <ChevronRight className="size-4" aria-hidden="true" />
           </button>
-          <div className="ml-auto flex gap-2">
+          <div className="ml-auto flex">
             {demonstrationTestimonials.map((item, itemIndex) => (
               <button
                 key={item.id}
                 type="button"
                 className={cn(
-                  "size-2.5 rounded-full",
-                  itemIndex === index ? "bg-bronze" : "bg-sage",
+                  "inline-flex size-11 touch-manipulation items-center justify-center",
                   focusRing,
                 )}
                 aria-label={`Show testimonial ${itemIndex + 1} of ${total}`}
                 aria-current={itemIndex === index ? "true" : undefined}
                 onClick={() => show(itemIndex)}
-              />
+              >
+                <span
+                  className={cn(
+                    "size-2.5 rounded-full",
+                    itemIndex === index ? "bg-bronze" : "bg-sage",
+                  )}
+                />
+              </button>
             ))}
           </div>
         </div>

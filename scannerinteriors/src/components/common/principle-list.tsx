@@ -10,7 +10,7 @@ export function PrincipleList({ principles }: PrincipleListProps) {
     <ol className="space-y-8">
       {principles.map((principle) => (
         <li key={principle.number}>
-          <AnimatedSection className="grid grid-cols-[auto_1fr] gap-4 border-t border-sage pt-6">
+          <AnimatedSection className="grid grid-cols-[auto_minmax(0,1fr)] gap-4 border-t border-sage pt-6">
             <span className="pt-1 text-2xl font-medium text-bronze">
               {principle.number}
             </span>

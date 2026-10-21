@@ -90,7 +90,7 @@ export function ImageCompare({ beforeSrc, beforeAlt, afterSrc, afterAlt }: Image
       aria-valuemax={100}
       aria-valuenow={Math.round(position)}
       aria-valuetext={`${Math.round(position)} percent of the first photograph`}
-      className="relative aspect-[16/10] cursor-ew-resize touch-none overflow-hidden rounded-lg bg-sand shadow-soft outline-none focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-bronze"
+      className="relative aspect-[4/3] cursor-ew-resize touch-none overflow-hidden rounded-lg bg-sand shadow-soft select-none outline-none focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-bronze md:aspect-[16/10] lg:aspect-[16/9]"
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={stopDragging}
@@ -113,10 +113,10 @@ export function ImageCompare({ beforeSrc, beforeAlt, afterSrc, afterAlt }: Image
           className="object-cover"
         />
       </div>
-      <span className="pointer-events-none absolute top-4 left-4 rounded-lg bg-ivory/90 px-3 py-1 font-nav text-xs tracking-[0.16em] text-charcoal uppercase">
+      <span className="pointer-events-none absolute top-3 left-3 rounded-lg bg-ivory/90 px-2.5 py-1 font-nav text-[0.65rem] tracking-[0.14em] text-charcoal uppercase sm:top-4 sm:left-4 sm:px-3 sm:text-xs sm:tracking-[0.16em]">
         Before
       </span>
-      <span className="pointer-events-none absolute top-4 right-4 rounded-lg bg-ivory/90 px-3 py-1 font-nav text-xs tracking-[0.16em] text-charcoal uppercase">
+      <span className="pointer-events-none absolute top-3 right-3 rounded-lg bg-ivory/90 px-2.5 py-1 font-nav text-[0.65rem] tracking-[0.14em] text-charcoal uppercase sm:top-4 sm:right-4 sm:px-3 sm:text-xs sm:tracking-[0.16em]">
         After
       </span>
       <div

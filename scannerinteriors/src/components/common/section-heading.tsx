@@ -25,7 +25,7 @@ export function SectionHeading({
       {eyebrow ? (
         <p
           className={cn(
-            "font-nav text-xs font-medium tracking-[0.22em] uppercase",
+            "font-nav text-xs font-medium tracking-[0.16em] uppercase sm:tracking-[0.22em]",
             inverse ? "text-sand" : "text-charcoal",
           )}
         >
@@ -34,10 +34,8 @@ export function SectionHeading({
       ) : null}
       <Title
         className={cn(
-          "font-heading font-medium tracking-tight text-balance",
-          as === "h1"
-            ? "text-4xl leading-[1.08] sm:text-6xl lg:text-7xl"
-            : "text-3xl leading-tight sm:text-5xl",
+          "max-w-full font-heading font-medium tracking-tight text-balance",
+          as === "h1" ? "aura-display" : "aura-title",
           inverse ? "text-ivory" : "text-charcoal",
           eyebrow ? "mt-4" : undefined,
         )}

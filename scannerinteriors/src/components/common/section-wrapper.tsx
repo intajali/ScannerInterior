@@ -38,7 +38,7 @@ export function SectionWrapper({
         className,
       )}
     >
-      <Container className={cn("py-16 sm:py-24", containerClassName)}>
+      <Container className={cn("py-14 sm:py-20 lg:py-24", containerClassName)}>
         {children}
       </Container>
     </section>

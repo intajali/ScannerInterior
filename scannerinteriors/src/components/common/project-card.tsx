@@ -33,16 +33,16 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
               alt=""
               fill
               loading="lazy"
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              sizes="(min-width: 1024px) 36rem, (min-width: 768px) 50vw, 100vw"
               className="image-zoom object-cover"
             />
           ) : null}
         </div>
-        <div className="flex flex-1 flex-col p-6">
+        <div className="flex flex-1 flex-col p-5 sm:p-6">
           <p className="font-nav text-xs font-medium tracking-[0.18em] text-charcoal uppercase">
             {project.category}
           </p>
-          <h2 className="mt-2 font-heading text-3xl font-medium tracking-tight">{project.title}</h2>
+          <h2 className="mt-2 font-heading text-2xl font-medium tracking-tight text-balance sm:text-3xl">{project.title}</h2>
           <p className="mt-3 text-base leading-7">{project.summary}</p>
           <p className="mt-4 font-nav text-xs tracking-[0.16em] uppercase">
             {project.location} · {project.year}

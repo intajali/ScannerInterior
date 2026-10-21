@@ -4,7 +4,7 @@ import type { ReactNode, SVGProps } from "react";
 import { Container } from "@/components/common/container";
 import { SiteLogo } from "@/components/layout/site-logo";
 import { mainNav } from "@/config/navigation";
-import { siteConfig } from "@/config/site";
+import { mapsUrl, siteConfig } from "@/config/site";
 import { services } from "@/data/services";
 
 type SocialLabel = (typeof siteConfig.social)[number]["label"];
@@ -46,10 +46,10 @@ function FooterHeading({ children }: { children: ReactNode }) {
 export function SiteFooter() {
   return (
     <footer className="border-t border-sage bg-ivory">
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4 lg:py-16">
+      <Container className="grid gap-10 py-12 *:min-w-0 sm:py-14 md:grid-cols-2 lg:grid-cols-4 lg:py-16">
         <div className="space-y-4">
           <SiteLogo />
-          <p className="max-w-xs font-heading text-2xl leading-snug">{siteConfig.tagline}</p>
+          <p className="max-w-xs font-heading text-xl leading-snug sm:text-2xl">{siteConfig.tagline}</p>
         </div>
         <nav aria-label="Footer">
           <FooterHeading>Explore</FooterHeading>
@@ -87,26 +87,38 @@ export function SiteFooter() {
             <li>
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="inline-flex items-center gap-2 underline-offset-4 hover:underline hover:decoration-bronze"
+                className="inline-flex max-w-full items-start gap-2 underline-offset-4 hover:underline hover:decoration-bronze"
               >
-                <Mail className="size-4 shrink-0 text-bronze" aria-hidden="true" />
-                {siteConfig.email}
+                <Mail className="mt-0.5 size-4 shrink-0 text-bronze" aria-hidden="true" />
+                <span className="min-w-0 break-words">{siteConfig.email}</span>
               </a>
             </li>
-            {siteConfig.phone ? (
-              <li>
-                <a
-                  href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-                  className="inline-flex items-center gap-2 underline-offset-4 hover:underline hover:decoration-bronze"
-                >
-                  <Phone className="size-4 shrink-0 text-bronze" aria-hidden="true" />
-                  {siteConfig.phone}
-                </a>
-              </li>
-            ) : null}
-            <li className="inline-flex items-start gap-2">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-bronze" aria-hidden="true" />
-              <span>{siteConfig.address}</span>
+            <li>
+              <p className="font-nav text-xs font-medium tracking-[0.18em] uppercase">Phone</p>
+              <a
+                href={`tel:${siteConfig.phone.replace(/[^\d+]/g, "")}`}
+                className="mt-1 inline-flex items-center gap-2 underline-offset-4 hover:underline hover:decoration-bronze"
+              >
+                <Phone className="size-4 shrink-0 text-bronze" aria-hidden="true" />
+                <span>{siteConfig.phone}</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex max-w-full items-start gap-2 underline-offset-4 hover:underline hover:decoration-bronze"
+              >
+                <MapPin className="mt-0.5 size-4 shrink-0 text-bronze" aria-hidden="true" />
+                <span>
+                  {siteConfig.address.street}
+                  <br />
+                  {siteConfig.address.unit}
+                  <br />
+                  {siteConfig.address.locality}, {siteConfig.address.region} {siteConfig.address.postalCode}
+                </span>
+              </a>
             </li>
           </ul>
           <ul className="mt-5 flex gap-2">

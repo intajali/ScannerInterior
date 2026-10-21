@@ -10,7 +10,7 @@ export function ServicesPreview() {
       <AnimatedSection>
         <SectionHeading eyebrow="Services" title="From the plan to the last object." />
       </AnimatedSection>
-      <div className="mt-10 grid gap-6 md:grid-cols-2">
+      <div className="mt-10 grid gap-6 *:min-w-0 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
           <AnimatedSection key={service.slug} className="h-full">
             <ServiceCard

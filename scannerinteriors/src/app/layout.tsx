@@ -59,6 +59,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
   themeColor: "#F7F4EF",
 };
 
@@ -70,6 +73,14 @@ const structuredData = {
   description: siteConfig.description,
   url: siteConfig.url,
   email: siteConfig.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: `${siteConfig.address.street}, ${siteConfig.address.unit}`,
+    addressLocality: siteConfig.address.locality,
+    addressRegion: siteConfig.address.region,
+    postalCode: siteConfig.address.postalCode,
+    addressCountry: "IN",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

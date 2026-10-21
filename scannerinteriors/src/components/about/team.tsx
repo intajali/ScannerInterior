@@ -14,13 +14,13 @@ export function Team() {
           description="These are demonstration roles for a small practice. Named portraits have not been published."
         />
       </AnimatedSection>
-      <ul className="mt-10 grid gap-6 sm:grid-cols-2">
+      <ul className="mt-10 grid gap-6 *:min-w-0 md:grid-cols-2 lg:grid-cols-4">
         {teamRoles.map((member) => (
           <li key={member.role}>
             <AnimatedSection className="h-full">
               <article className={`${surfaceCardClass} h-full p-6 sm:p-8`}>
                 <p className="font-nav text-xs tracking-[0.16em] uppercase">Demonstration role</p>
-                <h3 className="mt-3 font-heading text-3xl font-medium tracking-tight">{member.role}</h3>
+                <h3 className="mt-3 font-heading text-2xl font-medium tracking-tight text-balance sm:text-3xl">{member.role}</h3>
                 <p className="mt-4 text-base leading-7">{member.focus}</p>
               </article>
             </AnimatedSection>

@@ -145,7 +145,7 @@ export function ConsultationForm() {
       className="relative"
       onSubmit={handleSubmit}
     >
-      <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+      <div className="sr-only" aria-hidden="true">
         <label htmlFor="company-website">Company website</label>
         <input
           id="company-website"
@@ -163,7 +163,7 @@ export function ConsultationForm() {
         Share the location, the service you need, and what you want the room to feel like.
       </p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <div className="mt-8 grid gap-5 *:min-w-0 lg:grid-cols-2">
         <TextField
           label="Full Name"
           autoComplete="name"
@@ -181,7 +181,7 @@ export function ConsultationForm() {
           error={form.formState.errors.email?.message}
           {...form.register("email")}
         />
-        <div className="grid grid-cols-[8.5rem_minmax(0,1fr)] items-start gap-3">
+        <div className="grid items-start gap-5 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:gap-3 lg:col-span-2">
           <Controller
             name="countryCode"
             control={form.control}
@@ -286,7 +286,7 @@ export function ConsultationForm() {
 
       <button
         type="submit"
-        className={cn(primaryButtonClass, "mt-8")}
+        className={cn(primaryButtonClass, "mt-8 w-full sm:w-auto")}
         disabled={isSubmitting}
       >
         {isSubmitting ? "Sending…" : "Send enquiry"}

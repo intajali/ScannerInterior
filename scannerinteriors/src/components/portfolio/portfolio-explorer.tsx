@@ -35,7 +35,7 @@ export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Project categories">
+      <div className="-mx-1 flex flex-wrap gap-2 px-1" role="group" aria-label="Project categories">
         {filters.map((item) => {
           const selected = filter === item.id;
 
@@ -45,7 +45,7 @@ export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
               type="button"
               aria-pressed={selected}
               className={cn(
-                "inline-flex h-11 items-center rounded-lg border px-4 font-nav text-sm tracking-wide transition-colors duration-300",
+                "inline-flex h-11 max-w-full shrink-0 touch-manipulation items-center rounded-lg border px-4 font-nav text-sm tracking-wide whitespace-nowrap transition-colors duration-300",
                 focusRing,
                 selected
                   ? "border-charcoal bg-charcoal text-white"
@@ -75,9 +75,9 @@ export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
               No demonstration projects in this category yet.
             </p>
           ) : (
-            <div className="mt-10 columns-1 gap-4 sm:columns-2 lg:columns-3">
+            <div className="mt-10 columns-1 gap-4 md:columns-2 lg:columns-3">
               {visible.map((project) => (
-                <article key={project.slug} className="mb-4 break-inside-avoid">
+                <article key={project.slug} className="masonry-item mb-4">
                   <div className="overflow-hidden rounded-lg border border-sage bg-white shadow-soft transition-colors duration-300 hover:border-bronze">
                     <div className="group relative">
                       <Link
@@ -92,7 +92,7 @@ export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
                               alt=""
                               fill
                               loading="lazy"
-                              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                              sizes="(min-width: 1024px) 24rem, (min-width: 768px) 50vw, 100vw"
                               className="image-zoom object-cover"
                             />
                           ) : null}
@@ -101,7 +101,7 @@ export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
                       <button
                         type="button"
                         className={cn(
-                          "absolute right-3 bottom-3 inline-flex size-11 items-center justify-center rounded-lg border border-sage bg-ivory/95 text-charcoal shadow-soft transition-colors duration-300 hover:border-bronze hover:text-bronze",
+                          "absolute right-3 bottom-3 inline-flex size-11 touch-manipulation items-center justify-center rounded-lg border border-sage bg-ivory/95 text-charcoal shadow-soft transition-colors duration-300 hover:border-bronze hover:text-bronze",
                           focusRing,
                         )}
                         aria-label={`Open photographs of ${project.title}`}
@@ -117,7 +117,7 @@ export function PortfolioExplorer({ projects }: PortfolioExplorerProps) {
                       <p className="font-nav text-xs font-medium tracking-[0.16em] uppercase">
                         {project.category}
                       </p>
-                      <h2 className="mt-2 font-heading text-2xl font-medium tracking-tight">
+                      <h2 className="mt-2 font-heading text-2xl font-medium tracking-tight text-balance">
                         {project.title}
                       </h2>
                       <p className="mt-2 text-sm leading-6">{project.location}</p>

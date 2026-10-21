@@ -65,7 +65,7 @@ export function ProjectLightbox({
 
   return (
     <motion.div
-      className="fixed inset-0 z-[80] flex flex-col bg-charcoal/92 p-4 sm:p-8"
+      className="fixed inset-0 z-[80] flex flex-col bg-charcoal/92 p-4 pt-[max(1rem,env(safe-area-inset-top))] pr-[max(1rem,env(safe-area-inset-right))] pb-[max(1rem,env(safe-area-inset-bottom))] pl-[max(1rem,env(safe-area-inset-left))] sm:p-8"
       role="dialog"
       aria-modal="true"
       aria-label={`${title} photographs`}
@@ -80,8 +80,8 @@ export function ProjectLightbox({
         className="relative z-10 mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="mb-3 flex shrink-0 items-center justify-between gap-4 text-ivory">
-          <p className="font-nav text-xs tracking-[0.16em] uppercase">
+        <div className="mb-3 flex shrink-0 items-start justify-between gap-3 text-ivory">
+          <p className="min-w-0 flex-1 pt-3 font-nav text-xs tracking-[0.14em] uppercase sm:tracking-[0.16em]">
             {title}
             {total > 1 ? ` · ${index + 1} of ${total}` : null}
           </p>
@@ -89,7 +89,7 @@ export function ProjectLightbox({
             ref={closeRef}
             type="button"
             className={cn(
-              "inline-flex size-11 items-center justify-center rounded-lg border border-ivory/40 text-ivory transition-colors duration-300 hover:bg-ivory hover:text-charcoal",
+              "inline-flex size-11 shrink-0 touch-manipulation items-center justify-center rounded-lg border border-ivory/40 text-ivory transition-colors duration-300 hover:bg-ivory hover:text-charcoal",
               focusRing,
             )}
             aria-label="Close photograph"
@@ -124,10 +124,10 @@ export function ProjectLightbox({
             <button
               type="button"
               className={cn(
-                "inline-flex size-11 items-center justify-center rounded-lg border border-ivory/40 text-ivory transition-colors duration-300 hover:bg-ivory hover:text-charcoal",
-                focusRing,
-              )}
-              aria-label="Previous photograph"
+                "inline-flex size-11 touch-manipulation items-center justify-center rounded-lg border border-ivory/40 text-ivory transition-colors duration-300 hover:bg-ivory hover:text-charcoal",
+              focusRing,
+            )}
+            aria-label="Previous photograph"
               onClick={() => onIndexChange((index - 1 + total) % total)}
             >
               <ChevronLeft className="size-4" aria-hidden="true" />
@@ -135,10 +135,10 @@ export function ProjectLightbox({
             <button
               type="button"
               className={cn(
-                "inline-flex size-11 items-center justify-center rounded-lg border border-ivory/40 text-ivory transition-colors duration-300 hover:bg-ivory hover:text-charcoal",
-                focusRing,
-              )}
-              aria-label="Next photograph"
+                "inline-flex size-11 touch-manipulation items-center justify-center rounded-lg border border-ivory/40 text-ivory transition-colors duration-300 hover:bg-ivory hover:text-charcoal",
+              focusRing,
+            )}
+            aria-label="Next photograph"
               onClick={() => onIndexChange((index + 1) % total)}
             >
               <ChevronRight className="size-4" aria-hidden="true" />

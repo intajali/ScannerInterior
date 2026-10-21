@@ -3,20 +3,21 @@ import { AnimatedSection } from "@/components/common/animated-section";
 import { SecondaryButton } from "@/components/common/secondary-button";
 import { SectionHeading } from "@/components/common/section-heading";
 import { SectionWrapper } from "@/components/common/section-wrapper";
+import { mediaFrameClass, splitLayoutClass } from "@/components/common/styles";
 import { demonstrationImages } from "@/config/media";
 import { aboutPreview } from "@/data/home";
 
 export function AboutPreview() {
   return (
     <SectionWrapper id="about" bordered tone="white">
-      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <figure className="relative">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-soft lg:aspect-[4/5]">
+      <div className={splitLayoutClass}>
+        <figure className="relative min-w-0">
+          <div className={mediaFrameClass}>
             <Image
               src={demonstrationImages.about}
               alt="Demonstration photograph of a pale living room with a sectional sofa, a round table, and daylight from tall windows."
               fill
-              sizes="(min-width: 1024px) 40vw, 100vw"
+              sizes="(min-width: 768px) 45vw, 100vw"
               className="object-cover"
             />
           </div>
@@ -24,10 +25,10 @@ export function AboutPreview() {
             Demonstration photograph
           </figcaption>
         </figure>
-        <AnimatedSection>
+        <AnimatedSection className="min-w-0">
           <SectionHeading title={aboutPreview.title} description={aboutPreview.introduction} />
           <p className="mt-5 max-w-xl text-base leading-7 sm:text-lg">{aboutPreview.detail}</p>
-          <SecondaryButton href="/about" className="mt-8">
+          <SecondaryButton href="/about" className="mt-8 w-full sm:w-auto">
             About the studio
           </SecondaryButton>
         </AnimatedSection>

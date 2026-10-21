@@ -10,10 +10,10 @@ export function TestimonialList({ testimonials }: TestimonialListProps) {
   }
 
   return (
-    <ul className="grid gap-4 md:grid-cols-2">
+    <ul className="grid gap-4 *:min-w-0 md:grid-cols-2 lg:grid-cols-3">
       {testimonials.map((testimonial) => (
         <li key={testimonial.id} className="rounded-lg border border-sage bg-white p-6 shadow-soft sm:p-8">
-          <blockquote className="font-heading text-2xl leading-snug font-medium tracking-tight">
+          <blockquote className="aura-quote font-heading font-medium tracking-tight text-balance">
             {testimonial.quote}
           </blockquote>
           <footer className="mt-4 text-sm text-muted-foreground">
